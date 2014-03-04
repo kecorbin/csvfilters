@@ -1,0 +1,9 @@
+rmi,ipv4,tcp,1099,1099
+http,ipv4,tcp,80,80
+oracle,ipv4,tcp,80,80
+ica,ipv4,tcp,1494,1494
+sql,ipv4,tcp,1433,1433
+smtp,ipv4,tcp,25,25
+ssh,ipv4,tcp,22,22
+telnet,ipv4,tcp,23,23
+pop3,ipv4,tcp,110,110
