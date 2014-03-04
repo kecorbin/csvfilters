@@ -7,3 +7,4 @@ smtp,ipv4,tcp,25,25
 ssh,ipv4,tcp,22,22
 telnet,ipv4,tcp,23,23
 pop3,ipv4,tcp,110,110
+dns,ipv4,udp,53,53
