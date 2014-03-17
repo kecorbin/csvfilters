@@ -40,10 +40,9 @@ def main(hostname,username,password,filename,tenant):
             vzEntry = directory.create('vz.Entry', vzFilter, etherT=row[1], prot=row[2], dFromPort=row[3], dToPort=row[3], name=row[0]+'-entry')
 
 
-#	    vzBrCP = directory.create('vz.BrCP', fvTenant, name='RMI')
-#            vzSubj = directory.create('vz.Subj', vzBrCP, name='rmi')
-#	    vzRsSubjFiltAtt = directory.create('vz.RsSubjFiltAtt', vzSubj, name='flt-rmi')
-
+	    vzBrCP = directory.create('vz.BrCP', fvTenant, name=row[0]+'-contract')
+            vzSubj = directory.create('vz.Subj', vzBrCP, name=row[0]+'-subject')
+            vzRsSubjFiltAtt = directory.create('vz.RsSubjFiltAtt', vzSubj, tnVzFilterName=row[0])
 
 
 
