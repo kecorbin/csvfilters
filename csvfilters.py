@@ -3,7 +3,6 @@
 import sys
 import csv
 from argparse import ArgumentParser
-
 sys.path.append('pysdk')
 from insieme.mit import access
 
@@ -16,22 +15,19 @@ parser.add_argument('-f', '--filename',help='csv containing filter definitions',
 parser.add_argument('-t', '--tenant',help="Tenant Name for filter creation", required=True)
 args = parser.parse_args()
 
-
 hostname = args.apic
 username = args.user
 password = args.password
 filename = args.filename
 tenant = args.tenant
 access.rest()
+directory = access.MoDirectory(ip=hostname, port='8000', user=username, password=password)
 
-
-
-
-def main(hostname,username,password,filename,tenant):
+def main(directory,filename,tenant):
    directory = access.MoDirectory(ip=hostname, port='8000', user=username, password=password)
    polUni = directory.lookupByDn('uni')
    fvTenant = directory.create('fv.Tenant', polUni, name=tenant)
-
+   
    with open(filename, 'rb') as infile:
 
         filter_list = csv.reader(infile, delimiter=',',quotechar='|')
@@ -44,13 +40,6 @@ def main(hostname,username,password,filename,tenant):
             vzSubj = directory.create('vz.Subj', vzBrCP, name=row[0]+'-subject')
             vzRsSubjFiltAtt = directory.create('vz.RsSubjFiltAtt', vzSubj, tnVzFilterName=row[0])
 
-
-
-
-
-
-
-
    sd = directory.commit(fvTenant)
 
-main(hostname,username,password,filename,tenant)
+main(directory,filename,tenant)
